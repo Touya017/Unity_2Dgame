@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class Toko : MonoBehaviour {
@@ -35,7 +36,7 @@ public class Toko : MonoBehaviour {
     bool IsCrouch;
 
     // ダメージを受けた判定用
-    bool IsDamage;
+    //bool IsDamage;
 
 	// Use this for initialization
 	void Start () {
@@ -90,13 +91,7 @@ public class Toko : MonoBehaviour {
         }
         else anim.SetBool("IsCrouch", false);
 
-        // ダメージモーション移行
-        if(IsDamage && hp > 0)
-        {
-            anim.SetTrigger("IsDamage");
-        }
-
-
+       
         // 走り移動制御(左)
         if((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) && anim.GetBool("IsCrouch") == false)
         {
@@ -147,5 +142,22 @@ public class Toko : MonoBehaviour {
     {
         transform.FindChild("Toko_Arm_Hit").gameObject.SetActive(false);
         Debug.Log("Active false");
+    }
+
+    // 何かに触れた時の処理
+    void OnCollisionEnter2D(Collision2D E_other)
+    {
+        if(E_other.gameObject.tag == "Enemy")
+        {
+            if(hp > 0)
+            {
+                anim.SetTrigger("IsDamage");
+                transform.localScale = new Vector3(transform.localScale.x, 4.0f, 0.0f);
+            }
+            else if(hp == 0)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+        }
     }
 }
