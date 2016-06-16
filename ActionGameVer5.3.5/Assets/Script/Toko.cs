@@ -12,6 +12,12 @@ public class Toko : MonoBehaviour {
 
     // 弾コンポーネント格納用
     public GameObject bullet;
+    public float bulletSpeed = 8.0f;
+
+    // 地面との接地判定用コンポーネント格納用
+    protected Transform GroundCheck_L;
+    protected Transform GroundCheck_C;
+    protected Transform GroundCheck_R;
 
     // 格闘判定用コンポーネント格納用
     //public GameObject fight;
@@ -127,7 +133,7 @@ public class Toko : MonoBehaviour {
         Debug.Log(go.activeInHierarchy);
         go.transform.position = transform.position;
         go.transform.position += new Vector3(1.5f * transform.localScale.x/4, 0.5f, 0.0f);
-        go.GetComponent<Rigidbody2D>().velocity = new Vector2(11.0f * transform.localScale.x, 0.0f);
+        go.GetComponent<Rigidbody2D>().velocity = new Vector2(bulletSpeed * transform.localScale.x, 0.0f);
         go.transform.localScale = new Vector3(2.0f * transform.localScale.x / 4, 2.0f, 1.0f);
     }
     // 格闘攻撃が実行されたとき
