@@ -38,11 +38,18 @@ public class Toko : MonoBehaviour {
     // ダメージを受けた判定用
     //bool IsDamage;
 
+    void Awake()
+    {
+        GroundCheck_L = GameObject.Find("GroundCheck_L").GetComponentInParent<Transform>();
+        GroundCheck_C = GameObject.Find("GroundCheck_C").GetComponentInParent<Transform>();
+        GroundCheck_R = GameObject.Find("GroundCheck_R").GetComponentInParent<Transform>();
+    }
+
 	// Use this for initialization
 	void Start () {
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -54,7 +61,7 @@ public class Toko : MonoBehaviour {
 
         // 地面判定獲得用
         // 1つ目：開始点、2つ目：終点、3つ目：判定する為のレイヤー指定
-        IsGrounded = Physics2D.Linecast(transform.position, transform.position - transform.up * 1.5f, groundLayer);
+        IsGrounded = Physics2D.Linecast(transform.position, GroundCheck_C.position, groundLayer);
 
         // 地面に接地している、しゃがんでいない、かつジャンプキーが押されたらジャンプ移行
         if(IsGrounded && Input.GetKeyDown(KeyCode.Space) && anim.GetBool("IsCrouch") == false)

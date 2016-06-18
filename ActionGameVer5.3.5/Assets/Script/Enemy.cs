@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour {
     // 敵の行動管理用時間
     float startTime;
     // 画面内に映っているかを管理
-    bool IsRendered = false;
+    bool isRendered = false;
 
 	// Use this for initialization
 	void Start () {
@@ -24,12 +24,12 @@ public class Enemy : MonoBehaviour {
 
     void OnWillRenderObject()
     {
-        IsRendered = true;
+        isRendered = true;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if(IsRendered && Time.time >= startTime + actionTime)
+        if(isRendered && Time.time >= startTime + actionTime)
         {
             if(GameObject.Find("Toko").transform.position.x > transform.position.x)
             {
