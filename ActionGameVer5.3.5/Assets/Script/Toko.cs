@@ -40,9 +40,9 @@ public class Toko : MonoBehaviour {
 
     void Awake()
     {
-        GroundCheck_L = GameObject.Find("GroundCheck_L").GetComponentInParent<Transform>();
-        GroundCheck_C = GameObject.Find("GroundCheck_C").GetComponentInParent<Transform>();
-        GroundCheck_R = GameObject.Find("GroundCheck_R").GetComponentInParent<Transform>();
+        GroundCheck_L = transform.Find("GroundCheck_L");
+        GroundCheck_C = transform.Find("GroundCheck_C");
+        GroundCheck_R = transform.Find("GroundCheck_R");
     }
 
 	// Use this for initialization
@@ -134,7 +134,7 @@ public class Toko : MonoBehaviour {
         GameObject go = Instantiate(bullet);
         Debug.Log(go.activeInHierarchy);
         go.transform.position = transform.position;
-        go.transform.position += new Vector3(1.5f * transform.localScale.x/4, 0.5f, 0.0f);
+        go.transform.position += new Vector3(0.8f * transform.localScale.x/4, 0.5f, 0.0f);
         go.GetComponent<Rigidbody2D>().velocity = new Vector2(bulletSpeed * transform.localScale.x, 0.0f);
         go.transform.localScale = new Vector3(2.0f * transform.localScale.x / 4, 2.0f, 1.0f);
     }
