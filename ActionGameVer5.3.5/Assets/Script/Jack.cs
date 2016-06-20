@@ -20,8 +20,8 @@ public class Jack : MonoBehaviour {
 	void Update () {
         if(player.transform.position.x > transform.position.x)
         {
-            transform.localScale = new Vector3(4.0f, 4.0f, 0.0f);
+            transform.localScale = new Vector3(2.0f, 2.0f, 0.0f);
         }
-        else transform.localScale = new Vector3(-4.0f, 4.0f, 0.0f);
+        else transform.localScale = new Vector3(-2.0f, 2.0f, 0.0f);
 	}
 }
