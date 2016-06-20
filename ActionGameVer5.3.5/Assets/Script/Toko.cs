@@ -30,7 +30,9 @@ public class Toko : MonoBehaviour {
     //public int fightPower = 2;
 
     // 地面との接地判定用
-    bool IsGrounded;
+    bool IsGrounded_L;
+    bool IsGrounded_C;
+    bool IsGrounded_R;
 
     // しゃがみ判定用
     bool IsCrouch;
@@ -61,10 +63,13 @@ public class Toko : MonoBehaviour {
 
         // 地面判定獲得用
         // 1つ目：開始点、2つ目：終点、3つ目：判定する為のレイヤー指定
-        IsGrounded = Physics2D.Linecast(transform.position, GroundCheck_C.position, groundLayer);
+        IsGrounded_L = Physics2D.Linecast(transform.position, GroundCheck_L.position, groundLayer);
+        IsGrounded_C = Physics2D.Linecast(transform.position, GroundCheck_C.position, groundLayer);
+        IsGrounded_R = Physics2D.Linecast(transform.position, GroundCheck_R.position, groundLayer);
 
         // 地面に接地している、しゃがんでいない、かつジャンプキーが押されたらジャンプ移行
-        if(IsGrounded && Input.GetKeyDown(KeyCode.Space) && anim.GetBool("IsCrouch") == false)
+        if((IsGrounded_L || IsGrounded_C || IsGrounded_R) 
+            && Input.GetKeyDown(KeyCode.Space) && anim.GetBool("IsCrouch") == false)
         {
             Jump();
         }
@@ -92,7 +97,7 @@ public class Toko : MonoBehaviour {
         else anim.SetBool("IsPunch", false);
 
         // しゃがみモーション移行
-        if (IsGrounded && Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
+        if (IsGrounded_C && Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
         {
             anim.SetBool("IsCrouch", true);
         }
@@ -118,14 +123,16 @@ public class Toko : MonoBehaviour {
         anim.SetTrigger("IsJump");
         rb2d.AddForce(Vector2.up * jumpPower);
         // 地面から離れているのでIsGroundedをfalseに
-        IsGrounded = false;
+        IsGrounded_L = false;
+        IsGrounded_C = false;
+        IsGrounded_R = false;
     }
     void JumpAnim()
     {
         // velY 上方向にかかる速度係数　上はプラス、下はマイナス
         float velY = rb2d.velocity.y;
         anim.SetFloat("velY", velY);
-        anim.SetBool("IsGround", IsGrounded);
+        anim.SetBool("IsGround", IsGrounded_C);
     }
 
     // 射撃処理
