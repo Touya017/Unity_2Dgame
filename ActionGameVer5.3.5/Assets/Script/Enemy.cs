@@ -6,6 +6,8 @@ public class Enemy : MonoBehaviour {
 
     // rigidbody格納用
     Rigidbody2D Erb2D;
+    // 敵の行動管理用
+    int EActionNum = 0;
 
     // 行動時間
     public float actionTime = 1.0f;
@@ -43,6 +45,7 @@ public class Enemy : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         StartCoroutine(Action());
+        EActionNum = Random.Range(0,11);
 	}
 
     void OnWillRenderObject()
@@ -52,17 +55,20 @@ public class Enemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //if (player.transform.position.x > transform.position.x)
-        //{
-            //transform.localScale = new Vector3(-1.0f * transform.localScale.x, 1.5f, 0.0f);
-        //}
+
+        // プレイヤーと敵との位置関係で向きを変える
+        if (player.transform.position.x > transform.position.x)
+        {
+            transform.localScale = new Vector3(-1.0f, 1.5f, 0.0f);
+        }
+        else transform.localScale = new Vector3(1.0f, 1.5f, 0.0f);
     }
 
+    // １秒毎にジャンプする処理
     void EActionWalkJump()
     {
         if (player.transform.position.x < transform.position.x)
         {
-            transform.localScale = new Vector3(1.0f * transform.localScale.x, 1.5f, 0.0f);
             if (isRendered && Time.time >= startTime + actionTime)
             {
                 Erb2D.AddForce(lowaddforce);
@@ -72,7 +78,6 @@ public class Enemy : MonoBehaviour {
         }
         else
         {
-            transform.localScale = new Vector3(-1.0f * transform.localScale.x, 1.5f, 0.0f);
             if (isRendered && Time.time >= startTime + actionTime)
             {
                 Erb2D.AddForce(addforce);

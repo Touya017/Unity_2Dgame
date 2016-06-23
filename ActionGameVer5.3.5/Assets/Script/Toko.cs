@@ -35,7 +35,7 @@ public class Toko : MonoBehaviour {
     bool IsGrounded_R;
 
     // しゃがみ判定用
-    bool IsCrouch;
+    //bool IsCrouch;
 
     // ダメージを受けた判定用
     //bool IsDamage;
