@@ -26,7 +26,7 @@ public class Toko : MonoBehaviour {
     // 体力の設定
     public int hp = 4;
 
-    // 格闘攻撃の攻撃力設定
+    // 弾の攻撃力設定
     //public int fightPower = 2;
 
     // 地面との接地判定用
@@ -141,9 +141,9 @@ public class Toko : MonoBehaviour {
         GameObject go = Instantiate(bullet);
         Debug.Log(go.activeInHierarchy);
         go.transform.position = transform.position;
-        go.transform.position += new Vector3(0.8f * transform.localScale.x/4, 0.5f, 0.0f);
+        go.transform.position += new Vector3(0.8f * (transform.localScale.x/4), 0.5f, 0.0f);
         go.GetComponent<Rigidbody2D>().velocity = new Vector2(bulletSpeed * transform.localScale.x, 0.0f);
-        go.transform.localScale = new Vector3(2.0f * transform.localScale.x / 4, 2.0f, 1.0f);
+        go.transform.localScale = new Vector3(2.0f * (transform.localScale.x / 4), 2.0f, 1.0f);
     }
     // 格闘攻撃が実行されたとき
     void Fight()
