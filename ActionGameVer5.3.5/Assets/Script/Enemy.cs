@@ -6,6 +6,8 @@ public class Enemy : MonoBehaviour {
 
     // rigidbody格納用
     Rigidbody2D Erb2D;
+    // Collider判定用の格納
+    GameObject Ebody;
     // 敵の行動管理用
     int EActionNum = 0;
 
@@ -27,8 +29,8 @@ public class Enemy : MonoBehaviour {
 
     void Awake()
     {
-        startTime = Time.time;
         player = GameObject.Find("Toko");
+        Ebody = GameObject.Find("UniColliderBody");
         Erb2D = GetComponent<Rigidbody2D>();
     }
 
@@ -44,13 +46,17 @@ public class Enemy : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        startTime = Time.time;
         StartCoroutine(Action());
         EActionNum = Random.Range(0,11);
 	}
 
-    void OnWillRenderObject()
+    void OnWillRenderObject(Collider2D e)
     {
-        isRendered = true;
+        if(e.tag == "Enemy")
+        {
+            isRendered = true;
+        }
     }
 	
 	// Update is called once per frame
