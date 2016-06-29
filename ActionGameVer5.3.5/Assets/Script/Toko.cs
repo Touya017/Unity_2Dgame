@@ -42,6 +42,8 @@ public class Toko : MonoBehaviour {
 
     void Awake()
     {
+        rb2d = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         GroundCheck_L = transform.Find("GroundCheck_L");
         GroundCheck_C = transform.Find("GroundCheck_C");
         GroundCheck_R = transform.Find("GroundCheck_R");
@@ -49,12 +51,11 @@ public class Toko : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        rb2d = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
+        
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update() {
 
         // カメラの設定
         Camera camera = GameObject.Find("Main Camera").GetComponent<Camera>();
@@ -68,7 +69,7 @@ public class Toko : MonoBehaviour {
         IsGrounded_R = Physics2D.Linecast(transform.position, GroundCheck_R.position, groundLayer);
 
         // 地面に接地している、しゃがんでいない、かつジャンプキーが押されたらジャンプ移行
-        if((IsGrounded_L || IsGrounded_C || IsGrounded_R) 
+        if ((IsGrounded_L || IsGrounded_C || IsGrounded_R)
             && Input.GetKeyDown(KeyCode.Space) && anim.GetBool("IsCrouch") == false)
         {
             Jump();
@@ -102,10 +103,13 @@ public class Toko : MonoBehaviour {
             anim.SetBool("IsCrouch", true);
         }
         else anim.SetBool("IsCrouch", false);
+    }
 
-       
+    // 移動処理系実行箇所
+    void FixedUpdate()
+    {
         // 走り移動制御(左)
-        if((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) && anim.GetBool("IsCrouch") == false)
+        if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) && anim.GetBool("IsCrouch") == false)
         {
             rb2d.velocity = new Vector2(-runSpeed, rb2d.velocity.y);
             transform.localScale = new Vector3(-4.0f, 4.0f, 0.0f);
@@ -117,6 +121,7 @@ public class Toko : MonoBehaviour {
             transform.localScale = new Vector3(4.0f, 4.0f, 0.0f);
         }
     }
+   
     void Jump()
     {
         // ジャンプアニメーション開始

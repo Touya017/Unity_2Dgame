@@ -76,7 +76,7 @@ public class Enemy : MonoBehaviour {
                 Debug.Log("Enemy Run");
             }
         }
-        else
+        else if(player.transform.position.x > transform.position.x)
         {
             if (isRendered && Time.time >= startTime + actionTime)
             {
@@ -92,7 +92,7 @@ public class Enemy : MonoBehaviour {
     {
         if(P_other.gameObject.tag == "Player")
         {
-            P_other.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-100.0f * (P_other.transform.localScale.x/4),400.0f));
+            P_other.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-100.0f * (P_other.transform.localScale.x/1.4f),400.0f));
             P_other.transform.GetComponent<Toko>().hp = P_other.transform.GetComponent<Toko>().hp - eAttack;
         }
     }

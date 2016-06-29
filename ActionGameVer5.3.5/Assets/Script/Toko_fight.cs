@@ -28,10 +28,12 @@ public class Toko_fight : MonoBehaviour {
             c.transform.position = GameObject.Find("Jack").GetComponent<Jack>().transform.position;
             c.GetComponent<Rigidbody2D>().AddForce(new Vector2(400.0f*(Toko_master.transform.localScale.x/4), 500.0f));
         }
-        if (c.tag == "Enemy")
+        if (c.tag == "EnemyBody")
         {
-            c.transform.position = GameObject.Find("Uni").GetComponent<Enemy>().transform.position;
-            c.GetComponent<Rigidbody2D>().AddForce(new Vector2(300.0f * (Toko_master.transform.localScale.x / 4), 200.0f));
+            // Enemy親の座標獲得
+            GameObject EnemyV = GameObject.Find("Uni");
+            // Enemy親の座標をAddForceで移動させる
+            EnemyV.GetComponent<Rigidbody2D>().AddForce(new Vector2(100.0f * (Toko_master.transform.localScale.x / 1.4f), 400.0f));
         }
     }
 }
