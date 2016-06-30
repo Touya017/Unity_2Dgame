@@ -17,8 +17,7 @@ public class Enemy : MonoBehaviour {
     public Vector2 addforce = new Vector2(60, 1500.0f);
     public Vector2 lowaddforce = new Vector2(-60, 1500.0f);
     
-    // 敵の攻撃力
-    public int eAttack = 1;
+    
     // 敵の行動管理用時間
     float startTime;
     // 画面内に映っているかを管理
@@ -31,7 +30,7 @@ public class Enemy : MonoBehaviour {
     {
         player = GameObject.Find("Toko");
         Ebody = GameObject.Find("UniColliderBody");
-        Erb2D = GetComponent<Rigidbody2D>();
+        Erb2D = GetComponentInParent<Rigidbody2D>();
     }
 
     // 1秒ごとに敵にジャンプで接近させる
@@ -46,17 +45,16 @@ public class Enemy : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        Debug.Log(startTime);
         startTime = Time.time;
         StartCoroutine(Action());
         EActionNum = Random.Range(0,11);
 	}
 
-    void OnWillRenderObject(Collider2D e)
+    void OnWillRenderObject()
     {
-        if(e.tag == "Enemy")
-        {
-            isRendered = true;
-        }
+        Debug.Log(Camera.current.name);
+        isRendered = true;
     }
 	
 	// Update is called once per frame
@@ -65,9 +63,9 @@ public class Enemy : MonoBehaviour {
         // プレイヤーと敵との位置関係で向きを変える
         if (player.transform.position.x > transform.position.x)
         {
-            transform.localScale = new Vector3(-1.0f, 1.5f, 0.0f);
+            transform.localScale = new Vector3(-1.0f, 1.0f, 0.0f);
         }
-        else transform.localScale = new Vector3(1.0f, 1.5f, 0.0f);
+        else transform.localScale = new Vector3(1.0f, 1.0f, 0.0f);
     }
 
     // １秒毎にジャンプする処理
@@ -79,7 +77,7 @@ public class Enemy : MonoBehaviour {
             {
                 Erb2D.AddForce(lowaddforce);
                 startTime = Time.time;
-                Debug.Log("Enemy Run");
+                //Debug.Log("Enemy Run");
             }
         }
         else if(player.transform.position.x > transform.position.x)
@@ -88,18 +86,8 @@ public class Enemy : MonoBehaviour {
             {
                 Erb2D.AddForce(addforce);
                 startTime = Time.time;
-                Debug.Log("Enemy Run");
+                //Debug.Log("Enemy Run");
             }
-        }
-    }
-
-    // Uniがプレイヤーに触れた時の処理
-    void OnCollisionEnter2D(Collision2D P_other)
-    {
-        if(P_other.gameObject.tag == "Player")
-        {
-            P_other.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-100.0f * (P_other.transform.localScale.x/1.4f),400.0f));
-            P_other.transform.GetComponent<Toko>().hp = P_other.transform.GetComponent<Toko>().hp - eAttack;
         }
     }
 }
