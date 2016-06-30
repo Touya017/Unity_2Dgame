@@ -50,12 +50,14 @@ public class Toko : MonoBehaviour {
     }
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
         
     }
 
     // Update is called once per frame
-    void Update() {
+    void Update()
+    {
 
         // カメラの設定
         Camera camera = GameObject.Find("Main Camera").GetComponent<Camera>();
@@ -166,7 +168,7 @@ public class Toko : MonoBehaviour {
     // 何かに触れた時の処理
     void OnCollisionEnter2D(Collision2D E_other)
     {
-        if(E_other.gameObject.tag == "Enemy")
+        if(E_other.transform.tag == "EnemyBody")
         {
             if(hp > 0)
             {

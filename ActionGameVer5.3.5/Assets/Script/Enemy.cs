@@ -6,8 +6,6 @@ public class Enemy : MonoBehaviour {
 
     // rigidbody格納用
     Rigidbody2D Erb2D;
-    // Collider判定用の格納
-    GameObject Ebody;
     // 敵の行動管理用
     int EActionNum = 0;
 
@@ -30,8 +28,7 @@ public class Enemy : MonoBehaviour {
     void Awake()
     {
         player = GameObject.Find("Toko");
-        Ebody = GameObject.Find("UniColliderBody");
-        Erb2D = GetComponent<Rigidbody2D>();
+        Erb2D = GetComponentInParent<Rigidbody2D>();
     }
 
     // 1秒ごとに敵にジャンプで接近させる
@@ -51,12 +48,9 @@ public class Enemy : MonoBehaviour {
         EActionNum = Random.Range(0,11);
 	}
 
-    void OnWillRenderObject(Collider2D e)
+    void OnWillRenderObject()
     {
-        if(e.tag == "Enemy")
-        {
-            isRendered = true;
-        }
+        isRendered = true;
     }
 	
 	// Update is called once per frame
@@ -65,9 +59,9 @@ public class Enemy : MonoBehaviour {
         // プレイヤーと敵との位置関係で向きを変える
         if (player.transform.position.x > transform.position.x)
         {
-            transform.localScale = new Vector3(-1.0f, 1.5f, 0.0f);
+            transform.localScale = new Vector3(-1.0f, 1.0f, 0.0f);
         }
-        else transform.localScale = new Vector3(1.0f, 1.5f, 0.0f);
+        else transform.localScale = new Vector3(1.0f, 1.0f, 0.0f);
     }
 
     // １秒毎にジャンプする処理
@@ -96,10 +90,10 @@ public class Enemy : MonoBehaviour {
     // Uniがプレイヤーに触れた時の処理
     void OnCollisionEnter2D(Collision2D P_other)
     {
-        if(P_other.gameObject.tag == "Player")
+        if(P_other.gameObject.tag == "PlayerBody")
         {
-            P_other.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-100.0f * (P_other.transform.localScale.x/1.4f),400.0f));
-            P_other.transform.GetComponent<Toko>().hp = P_other.transform.GetComponent<Toko>().hp - eAttack;
+            P_other.gameObject.GetComponentInParent<Rigidbody2D>().AddForce(new Vector2(-100.0f * (player.transform.localScale.x/1.4f),400.0f));
+            player.GetComponent<Toko>().hp = player.GetComponent<Toko>().hp - eAttack;
         }
     }
 }
