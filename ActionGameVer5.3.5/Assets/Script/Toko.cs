@@ -168,14 +168,14 @@ public class Toko : MonoBehaviour {
     // 何かに触れた時の処理
     void OnCollisionEnter2D(Collision2D E_other)
     {
-        if(E_other.transform.tag == "EnemyBody")
+        if(E_other.transform.tag == "Enemy")
         {
             if(hp > 0)
             {
                 anim.SetTrigger("IsDamage");
                 transform.localScale = new Vector3(transform.localScale.x, 4.0f, 0.0f);
             }
-            else if(hp == 0)
+            else if(hp <= 0)
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }

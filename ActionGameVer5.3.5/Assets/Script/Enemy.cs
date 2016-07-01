@@ -15,8 +15,6 @@ public class Enemy : MonoBehaviour {
     public Vector2 addforce = new Vector2(60, 1500.0f);
     public Vector2 lowaddforce = new Vector2(-60, 1500.0f);
     
-    // 敵の攻撃力
-    public int eAttack = 1;
     // 敵の行動管理用時間
     float startTime;
     // 画面内に映っているかを管理
@@ -84,16 +82,6 @@ public class Enemy : MonoBehaviour {
                 startTime = Time.time;
                 Debug.Log("Enemy Run");
             }
-        }
-    }
-
-    // Uniがプレイヤーに触れた時の処理
-    void OnCollisionEnter2D(Collision2D P_other)
-    {
-        if(P_other.gameObject.tag == "PlayerBody")
-        {
-            P_other.gameObject.GetComponentInParent<Rigidbody2D>().AddForce(new Vector2(-100.0f * (player.transform.localScale.x/1.4f),400.0f));
-            player.GetComponent<Toko>().hp = player.GetComponent<Toko>().hp - eAttack;
         }
     }
 }
