@@ -3,7 +3,7 @@ guid: f85857d3d55f34fd0806670b93ab6db6
 labels:
 - Unitychan
 - 2d
-timeCreated: 1467044262
+timeCreated: 1467562696
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
@@ -44,8 +44,8 @@ TextureImporter:
   spriteMode: 3
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 7
-  spritePivot: {x: 0.5, y: 0}
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1

@@ -15,10 +15,6 @@ public class Enemy : MonoBehaviour {
     public Vector2 addforce = new Vector2(60, 1500.0f);
     public Vector2 lowaddforce = new Vector2(-60, 1500.0f);
     
-<<<<<<< HEAD
-    
-=======
->>>>>>> 23aa46af0fc4f4c75d5ca7d58ebb127c49e10803
     // 敵の行動管理用時間
     float startTime;
     // 画面内に映っているかを管理
@@ -30,10 +26,6 @@ public class Enemy : MonoBehaviour {
     void Awake()
     {
         player = GameObject.Find("Toko");
-<<<<<<< HEAD
-        Ebody = GameObject.Find("UniColliderBody");
-=======
->>>>>>> 23aa46af0fc4f4c75d5ca7d58ebb127c49e10803
         Erb2D = GetComponentInParent<Rigidbody2D>();
     }
 
@@ -57,10 +49,7 @@ public class Enemy : MonoBehaviour {
 
     void OnWillRenderObject()
     {
-<<<<<<< HEAD
         Debug.Log(Camera.current.name);
-=======
->>>>>>> 23aa46af0fc4f4c75d5ca7d58ebb127c49e10803
         isRendered = true;
     }
 	
