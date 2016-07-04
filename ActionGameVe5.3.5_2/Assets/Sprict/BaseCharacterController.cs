@@ -33,7 +33,7 @@ public class BaseCharacterController : MonoBehaviour {
 
     // 内部パラメータ
     protected float speedVx = 0.0f;
-    protected float spddeAddPower = 0.0f;
+    protected float speedAddPower = 0.0f;
     protected float gravityScale = 4.0f;
     protected float jumpStartTime = 0.0f;
 
