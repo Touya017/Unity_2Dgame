@@ -36,6 +36,18 @@ public class PlayerMain : MonoBehaviour {
         if (Input.GetButtonDown("Jump"))
         {
             playerCtrl.ActionJump();
+            return;
+        }
+        // 格闘攻撃
+        if (Input.GetButtonDown("Fire1"))
+        {
+            playerCtrl.ActionFight();
+        }
+
+        // 射撃攻撃
+        if (Input.GetButtonDown("Fire2"))
+        {
+            playerCtrl.ActionFire();
         }
 	}
 }

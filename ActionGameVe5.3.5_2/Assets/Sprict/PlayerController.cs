@@ -2,6 +2,16 @@
 using System.Collections;
 
 public class PlayerController : BaseCharacterController {
+
+    // アニメーションのハッシュ名
+    public readonly static int ANISTS_Idle = Animator.StringToHash("Base Layer.Toko_Idle");
+    public readonly static int ANISTS_Walk = Animator.StringToHash("Base Layer.Toko_Walk");
+    public readonly static int ANISTS_Run = Animator.StringToHash("Base Layer.Toko_Run");
+    public readonly static int ANISTS_Jump = Animator.StringToHash("Base Layer.Toko_Jump");
+    public readonly static int ANISTS_Punch = Animator.StringToHash("Base Layer.Toko_Punch");
+    public readonly static int ANISTS_Fire = Animator.StringToHash("Base Layer.Toko_Fire");
+    public readonly static int ANISTS_Dead = Animator.StringToHash("Base Layer.Toko_Dead");
+
     // Inspector表示部分
     public float initHpMax = 20.0f;
     [Range(0.1f, 100.0f)]
@@ -9,6 +19,11 @@ public class PlayerController : BaseCharacterController {
 
     // 内部パラメータ
     int jumpCount = 0;
+
+    // コンボ入力用管理変数
+    volatile bool atkInputEnable = false;
+    volatile bool atkInputNow = false;
+
     bool breakEnable = true;
     float groundFriction = 0.0f;
 
@@ -26,6 +41,9 @@ public class PlayerController : BaseCharacterController {
     // キャラクター個別の処理
     protected override void FixedUpdateCharacter()
     {
+        // 現在のステートを取得
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+
         // 着地チェック
         if (jumped)
         {
@@ -39,6 +57,12 @@ public class PlayerController : BaseCharacterController {
         if (!jumped)
         {
             jumpCount = 0;
+        }
+
+        if(stateInfo.shortNameHash == ANISTS_Punch || stateInfo.shortNameHash == ANISTS_Fire)
+        {
+            // 攻撃中は移動停止
+            speedVx = 0;
         }
 
         // キャラクターの方向
@@ -62,6 +86,20 @@ public class PlayerController : BaseCharacterController {
 
         // カメラ
         Camera.main.transform.position = transform.position - Vector3.forward;
+    }
+
+    public void EnableAttackInput()
+    {
+        atkInputEnable = true;
+    }
+
+    public void SetNextAttack(string name)
+    {
+        if(atkInputNow == true)
+        {
+            atkInputNow = false;
+            animator.Play(name);
+        }
     }
 
     // 基本アクション
@@ -133,6 +171,37 @@ public class PlayerController : BaseCharacterController {
                 }
                 break;
         }
+    }
+
+    // 格闘攻撃
+    public void ActionFight()
+    {
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        if(stateInfo.shortNameHash == ANISTS_Idle || stateInfo.shortNameHash == ANISTS_Walk || 
+            stateInfo.shortNameHash == ANISTS_Run || 
+            stateInfo.shortNameHash == ANISTS_Jump || stateInfo.shortNameHash != ANISTS_Punch)
+        {
+            animator.SetTrigger("Punch");
+        }
+        else
+        {
+            if (atkInputEnable)
+            {
+                atkInputEnable = false;
+                atkInputNow = true;
+            }
+        }
+    }
+
+    // 射撃攻撃
+    public void ActionFire()
+    {
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        if(stateInfo.shortNameHash != ANISTS_Fire)
+        {
+            animator.SetTrigger("Fire");
+        }
+        return;
     }
 
     // しゃがみモーション
