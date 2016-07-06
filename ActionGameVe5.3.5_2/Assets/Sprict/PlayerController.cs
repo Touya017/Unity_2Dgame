@@ -90,7 +90,10 @@ public class PlayerController : BaseCharacterController {
 
     public void EnableAttackInput()
     {
-        atkInputEnable = true;
+        if (Input.GetButtonDown("Fire2"))
+        {
+            atkInputEnable = true;
+        }
     }
 
     public void SetNextAttack(string name)
