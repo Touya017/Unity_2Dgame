@@ -59,7 +59,7 @@ public class PlayerController : BaseCharacterController {
             jumpCount = 0;
         }
 
-        if(stateInfo.shortNameHash == ANISTS_Punch || stateInfo.shortNameHash == ANISTS_Fire)
+        if(stateInfo.fullPathHash == ANISTS_Punch || stateInfo.fullPathHash == ANISTS_Fire)
         {
             // 攻撃中は移動停止
             speedVx = 0;
@@ -90,10 +90,8 @@ public class PlayerController : BaseCharacterController {
 
     public void EnableAttackInput()
     {
-        if (Input.GetButtonDown("Fire2"))
-        {
-            atkInputEnable = true;
-        }
+        Debug.Log("QuickDrow");
+        atkInputEnable = true;
     }
 
     public void SetNextAttack(string name)
@@ -180,9 +178,8 @@ public class PlayerController : BaseCharacterController {
     public void ActionFight()
     {
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-        if(stateInfo.shortNameHash == ANISTS_Idle || stateInfo.shortNameHash == ANISTS_Walk || 
-            stateInfo.shortNameHash == ANISTS_Run || 
-            stateInfo.shortNameHash == ANISTS_Jump || stateInfo.shortNameHash != ANISTS_Punch)
+        if(stateInfo.fullPathHash == ANISTS_Idle || stateInfo.fullPathHash == ANISTS_Walk || 
+            stateInfo.fullPathHash == ANISTS_Run || stateInfo.fullPathHash == ANISTS_Jump)
         {
             animator.SetTrigger("Punch");
         }
@@ -200,7 +197,8 @@ public class PlayerController : BaseCharacterController {
     public void ActionFire()
     {
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-        if(stateInfo.shortNameHash != ANISTS_Fire)
+        if (stateInfo.fullPathHash == ANISTS_Idle || stateInfo.fullPathHash == ANISTS_Walk ||
+            stateInfo.fullPathHash == ANISTS_Run || stateInfo.fullPathHash == ANISTS_Jump)
         {
             animator.SetTrigger("Fire");
         }
