@@ -178,14 +178,9 @@ public class PlayerController : BaseCharacterController {
     public void ActionFight()
     {
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-<<<<<<< HEAD
-        Debug.Log(stateInfo.shortNameHash);
-        if(stateInfo.shortNameHash == ANISTS_Idle || stateInfo.shortNameHash == ANISTS_Walk || 
-            stateInfo.shortNameHash == ANISTS_Run || stateInfo.shortNameHash == ANISTS_Jump)
-=======
+
         if(stateInfo.fullPathHash == ANISTS_Idle || stateInfo.fullPathHash == ANISTS_Walk || 
             stateInfo.fullPathHash == ANISTS_Run || stateInfo.fullPathHash == ANISTS_Jump)
->>>>>>> origin/master
         {
             animator.SetTrigger("Punch");
         }
@@ -203,14 +198,9 @@ public class PlayerController : BaseCharacterController {
     public void ActionFire()
     {
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-<<<<<<< HEAD
-        if((stateInfo.shortNameHash == ANISTS_Idle || stateInfo.shortNameHash == ANISTS_Walk ||
-            stateInfo.shortNameHash == ANISTS_Run || stateInfo.shortNameHash == ANISTS_Jump) &&
-            stateInfo.shortNameHash != ANISTS_Fire)
-=======
+
         if (stateInfo.fullPathHash == ANISTS_Idle || stateInfo.fullPathHash == ANISTS_Walk ||
             stateInfo.fullPathHash == ANISTS_Run || stateInfo.fullPathHash == ANISTS_Jump)
->>>>>>> origin/master
         {
             animator.SetTrigger("Fire");
         }
