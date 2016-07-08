@@ -178,6 +178,7 @@ public class PlayerController : BaseCharacterController {
     public void ActionFight()
     {
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+
         if(stateInfo.fullPathHash == ANISTS_Idle || stateInfo.fullPathHash == ANISTS_Walk || 
             stateInfo.fullPathHash == ANISTS_Run || stateInfo.fullPathHash == ANISTS_Jump)
         {
@@ -197,6 +198,7 @@ public class PlayerController : BaseCharacterController {
     public void ActionFire()
     {
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+
         if (stateInfo.fullPathHash == ANISTS_Idle || stateInfo.fullPathHash == ANISTS_Walk ||
             stateInfo.fullPathHash == ANISTS_Run || stateInfo.fullPathHash == ANISTS_Jump)
         {
