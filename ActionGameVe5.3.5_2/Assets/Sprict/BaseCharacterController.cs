@@ -7,6 +7,9 @@ public class BaseCharacterController : MonoBehaviour {
     public Vector2 velocityMin = new Vector2(-100.0f, -100.0f);
     public Vector2 velocityMax = new Vector2(+100.0f, +50.0f);
 
+    // スーパーアーマー管理
+    public bool superArmor = false;
+
     // 体力設定
     [System.NonSerialized]  public float hpMax = 10.0f;
     [System.NonSerialized]  public float hp = 10.0f;
@@ -130,6 +133,18 @@ public class BaseCharacterController : MonoBehaviour {
         rb2D.velocity = new Vector2(vx, vy);
     }
 
+    // スーパーアーマー付与
+    public void EnableSuperArmor()
+    {
+        Debug.Log("------------EnableSuperArmor---------------");
+        superArmor = true;
+    }
+    public void DisableSuperArmor()
+    {
+        Debug.Log("------------DisableSuperArmor---------------");
+        superArmor = false;
+    }
+
     // FixedUpdateCharacter関数
     protected virtual void FixedUpdateCharacter()
     {
@@ -150,6 +165,39 @@ public class BaseCharacterController : MonoBehaviour {
             speedVx = 0;
             animator.SetTrigger("Idle");
         }
+    }
+
+    // プレイヤーの方向に向く
+    public bool ActionLookup(GameObject go, float near)
+    {
+        if(Vector3.Distance(transform.position,go.transform.position) > near)
+        {
+            dir = (transform.position.x < go.transform.position.x) ? +1 : -1;
+            return true;
+        }
+        return false;
+    }
+
+    // プレイヤーの近くに寄る
+    public bool ActionMoveToNear(GameObject go, float near)
+    {
+        if(Vector3.Distance(transform.position,go.transform.position) > near)
+        {
+            ActionMove((transform.position.x < go.transform.position.x) ? +1.0f : -1.0f);
+            return true;
+        }
+        return false;
+    }
+
+    // プレイヤーから離れる
+    public bool ActionMoveToFar(GameObject go, float far)
+    {
+        if(Vector3.Distance(transform.position, go.transform.position) < far)
+        {
+            ActionMove((transform.position.x > go.transform.position.x) ? +1.0f : -1.0f);
+            return true;
+        }
+        return false;
     }
 
     // 死亡時の処理

@@ -9,8 +9,12 @@ public class PlayerController : BaseCharacterController {
     public readonly static int ANISTS_Run = Animator.StringToHash("Base Layer.Toko_Run");
     public readonly static int ANISTS_Jump = Animator.StringToHash("Base Layer.Toko_Jump");
     public readonly static int ANISTS_Punch = Animator.StringToHash("Base Layer.Toko_Punch");
+    public readonly static int ANISTS_QuickDraw = Animator.StringToHash("Base Layer.Toko_QuickDraw");
     public readonly static int ANISTS_Fire = Animator.StringToHash("Base Layer.Toko_Fire");
     public readonly static int ANISTS_Dead = Animator.StringToHash("Base Layer.Toko_Dead");
+
+    // セーブデータパラメータ
+    public static int score = 0;
 
     // Inspector表示部分
     public float initHpMax = 20.0f;
@@ -26,6 +30,28 @@ public class PlayerController : BaseCharacterController {
 
     bool breakEnable = true;
     float groundFriction = 0.0f;
+
+    // サポート関数(Enemy側からの参照用)
+    // プレイヤーゲームオブジェクト
+    public static GameObject GetGameObject()
+    {
+        return GameObject.FindGameObjectWithTag("Player");
+    }
+    // プレイヤーの座標獲得
+    public static Transform GetTransform()
+    {
+        return GameObject.FindGameObjectWithTag("Player").transform;
+    }
+    // プレイヤーコントローラーの獲得
+    public static PlayerController GetController()
+    {
+        return GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+    }
+    // プレイヤーのアニメーター獲得
+    public static Animator GetAnimator()
+    {
+        return GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
+    }
 
     // BaseCharacterControllerのAwake処理を呼ぶ
     protected override void Awake()
