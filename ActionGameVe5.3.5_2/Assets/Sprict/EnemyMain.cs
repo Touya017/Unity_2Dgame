@@ -141,7 +141,7 @@ public class EnemyMain : MonoBehaviour {
         return distanceToPlayer;
     }
 
-    public bool IsChangeDistanePlayerX(float l)
+    public bool IsChangeDistanePlayer(float l)
     {
         return (Mathf.Abs(distanceToPlayer - distanceToPlayerPrev) > 1);
     }
