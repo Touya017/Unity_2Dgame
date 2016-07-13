@@ -77,7 +77,7 @@ public class EnemyMain_A : EnemyMain {
     {
         enemyCtrl.ActionLookup(player, 0.1f);
         enemyCtrl.ActionMove(0.0f);
-        enemyCtrl.ActionAttack("Blade", damageAttack_A);
+        enemyCtrl.ActionAttack("Attack_A", damageAttack_A);
         SetAIState(ENEMYAISTS.WAIT, 2.0f);
     }
 }

@@ -102,19 +102,19 @@ public class EnemyController : BaseCharacterController {
 
         AnimatorStateInfo stateInfo = playerAnim.GetCurrentAnimatorStateInfo(0);
 
-        if(stateInfo.fullPathHash == PlayerController.ANISTS_QuickDraw)
+        if(stateInfo.fullPathHash == PlayerController.ANISTS_Punch)
         {
-            damage = 2;
+            damage = 1;
             if (!superArmor)
             {
-                animator.SetTrigger("DMG");
-                Erb2D.AddForce(new Vector2(60.0f, 200.0f));
+                animator.SetTrigger("DMG_A");
+                Erb2D.AddForce(new Vector2(-200.0f * (basScaleX * dir), 500.0f));
                 Debug.Log(string.Format(">>> DMG {0}", stateInfo.fullPathHash));
             }
             else
             {
                 damage = 1;
-                animator.SetTrigger("DMG");
+                animator.SetTrigger("DMG_A");
                 Debug.Log(string.Format(">>> DMG {0}", stateInfo.fullPathHash));
             }
         }

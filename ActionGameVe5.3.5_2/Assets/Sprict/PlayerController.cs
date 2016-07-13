@@ -116,16 +116,16 @@ public class PlayerController : BaseCharacterController {
 
     public void EnableAttackInput()
     {
-        Debug.Log("QuickDrow");
         atkInputEnable = true;
     }
 
     public void SetNextAttack(string name)
     {
-        if(atkInputNow == true)
+        if (atkInputNow == true)
         {
             atkInputNow = false;
             animator.Play(name);
+            Debug.Log("QuickDrow");
         }
     }
 
