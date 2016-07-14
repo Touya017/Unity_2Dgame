@@ -21,7 +21,7 @@ public class EnemyMain_A : EnemyMain {
                 int n = SelectRandomAIState();
                 if(n < aiIfRUNTOPLAYER)
                 {
-                    SetAIState(ENEMYAISTS.RUNTOPLAYER, 3.0f);
+                    SetAIState(ENEMYAISTS.RUNTOPLAYER, 2.0f);
                 }else if(n < aiIfRUNTOPLAYER + aiIfJUMPTOPLAYER)
                 {
                     SetAIState(ENEMYAISTS.JUMPTOPLAYER, 2.0f);
@@ -42,11 +42,11 @@ public class EnemyMain_A : EnemyMain {
                 break;
 
             case ENEMYAISTS.RUNTOPLAYER: // 近づく処理
-                if(GetDistanePlayerY() > 2.0f)
+                if(GetDistanePlayerY() > 3.0f)
                 {
-                    SetAIState(ENEMYAISTS.JUMPTOPLAYER, 1.0f);
+                    SetAIState(ENEMYAISTS.JUMPTOPLAYER, 1.5f);
                 }
-                if(!enemyCtrl.ActionMoveToNear(player, 2.5f))
+                if(!enemyCtrl.ActionMoveToNear(player, 2.0f))
                 {
                     Attack_A();
                 }
@@ -60,7 +60,7 @@ public class EnemyMain_A : EnemyMain {
                 }
                 enemyCtrl.ActionJump();
                 enemyCtrl.ActionMoveToNear(player, 0.1f);
-                SetAIState(ENEMYAISTS.FREEZ, 0.5f);
+                SetAIState(ENEMYAISTS.FREEZ, 1.5f);
                 break;
 
             case ENEMYAISTS.ESCAPE: // 遠ざかる

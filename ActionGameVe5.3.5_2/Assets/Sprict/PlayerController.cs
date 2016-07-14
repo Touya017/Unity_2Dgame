@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class PlayerController : BaseCharacterController {
@@ -14,6 +15,8 @@ public class PlayerController : BaseCharacterController {
     public readonly static int ANISTS_Dead = Animator.StringToHash("Base Layer.Toko_Dead");
 
     // セーブデータパラメータ
+    public static float nowHpMax = 0;
+    public static float nowHp = 0;
     public static int score = 0;
 
     // Inspector表示部分
@@ -245,5 +248,61 @@ public class PlayerController : BaseCharacterController {
             animator.SetBool("Crouch", true);
         }
         else animator.SetBool("Crouch", false);
+    }
+
+    // ダメージ処理
+    public void ActionDamage(float damage)
+    {
+        if (!activeSts)
+        {
+            return;
+        }
+
+        animator.SetTrigger("DMG_A");
+        speedVx = 0;
+        rb2D.gravityScale = gravityScale;
+
+        if (jumped)
+        {
+            damage *= 1.5f;
+        }
+
+        if(SetHP(hp - damage, hpMax))
+        {
+            Dead(true); // 死亡
+        }
+    }
+
+    // 死亡判定処理
+    public override void Dead(bool gameover)
+    {
+        // 死亡処理を行うか
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        if(!activeSts || stateInfo.fullPathHash == ANISTS_Dead)
+        {
+            return;
+        }
+        base.Dead(gameover);
+        SetHP(0, hpMax);
+        Invoke("GameOver", 3.0f);
+    }
+
+    // GameOver処理
+    public void GameOver()
+    {
+        PlayerController.score = 0;
+        SceneManager.LoadScene(SceneManager.GetActiveScene(name));
+    }
+
+    public override bool SetHP(float _hp, float _hpMax)
+    {
+        if(_hp > _hpMax)
+        {
+            _hp = _hpMax;
+        }
+
+        nowHp = hp;
+        nowHpMax = _hpMax;
+        return base.SetHP(_hp, _hpMax);
     }
 }
