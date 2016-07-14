@@ -107,13 +107,8 @@ public class EnemyController : BaseCharacterController {
             damage = 1;
             if (!superArmor)
             {
-<<<<<<< HEAD
-                animator.SetTrigger("DMG");
-                Erb2D.AddForce(new Vector2(-300.0f * (basScaleX * dir), 600.0f));
-=======
                 animator.SetTrigger("DMG_A");
                 Erb2D.AddForce(new Vector2(-200.0f * (basScaleX * dir), 500.0f));
->>>>>>> 0bf80ab2c729fe322e07a6d92d7ca42d1a6e3edc
                 Debug.Log(string.Format(">>> DMG {0}", stateInfo.fullPathHash));
             }
             else

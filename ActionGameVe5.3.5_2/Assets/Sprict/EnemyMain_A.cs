@@ -24,7 +24,7 @@ public class EnemyMain_A : EnemyMain {
                     SetAIState(ENEMYAISTS.RUNTOPLAYER, 3.0f);
                 }else if(n < aiIfRUNTOPLAYER + aiIfJUMPTOPLAYER)
                 {
-                    SetAIState(ENEMYAISTS.JUMPTOPLAYER, 1.0f);
+                    SetAIState(ENEMYAISTS.JUMPTOPLAYER, 2.0f);
                 }else if(n < aiIfRUNTOPLAYER + aiIfJUMPTOPLAYER + aiIfESCAPE)
                 {
                     SetAIState(ENEMYAISTS.ESCAPE, Random.Range(2.0f, 5.0f));
@@ -42,7 +42,7 @@ public class EnemyMain_A : EnemyMain {
                 break;
 
             case ENEMYAISTS.RUNTOPLAYER: // 近づく処理
-                if(GetDistanePlayerY() > 3.0f)
+                if(GetDistanePlayerY() > 2.0f)
                 {
                     SetAIState(ENEMYAISTS.JUMPTOPLAYER, 1.0f);
                 }
