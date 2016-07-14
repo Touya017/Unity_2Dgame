@@ -121,11 +121,15 @@ public class PlayerController : BaseCharacterController {
 
     public void SetNextAttack(string name)
     {
+<<<<<<< HEAD
         Debug.Log("QuickDrow");
+=======
+>>>>>>> 0bf80ab2c729fe322e07a6d92d7ca42d1a6e3edc
         if (atkInputNow == true)
         {
             atkInputNow = false;
             animator.Play(name);
+            Debug.Log("QuickDrow");
         }
     }
 
