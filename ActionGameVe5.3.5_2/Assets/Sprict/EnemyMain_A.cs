@@ -46,14 +46,14 @@ public class EnemyMain_A : EnemyMain {
                 {
                     SetAIState(ENEMYAISTS.JUMPTOPLAYER, 1.0f);
                 }
-                if(!enemyCtrl.ActionMoveToNear(player, 2.0f))
+                if(!enemyCtrl.ActionMoveToNear(player, 2.5f))
                 {
                     Attack_A();
                 }
                 break;
 
             case ENEMYAISTS.JUMPTOPLAYER: // ジャンプで近づく
-                if(GetDistanePlayer() < 2.0f && IsChangeDistanePlayer(0.5f))
+                if(GetDistanePlayer() < 2.5f && IsChangeDistanePlayer(0.5f))
                 {
                     Attack_A();
                     break;
@@ -77,7 +77,7 @@ public class EnemyMain_A : EnemyMain {
     {
         enemyCtrl.ActionLookup(player, 0.1f);
         enemyCtrl.ActionMove(0.0f);
-        enemyCtrl.ActionAttack("Blade", damageAttack_A);
+        enemyCtrl.ActionAttack("Attack_A", damageAttack_A);
         SetAIState(ENEMYAISTS.WAIT, 2.0f);
     }
 }

@@ -30,7 +30,7 @@ public class PlayerMain : MonoBehaviour {
         float joyCrouch = Input.GetAxis("Lstick V");
         playerCtrl.ActionMove(joyMv);
         playerCtrl.ActionCrouch(joyCrouch);
-        Debug.Log(joyMv);
+        //Debug.Log(joyMv);
 
         // ジャンプ
         if (Input.GetButtonDown("Jump"))
