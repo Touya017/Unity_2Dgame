@@ -291,7 +291,7 @@ public class PlayerController : BaseCharacterController {
     public void GameOver()
     {
         PlayerController.score = 0;
-        SceneManager.LoadScene(SceneManager.GetActiveScene(name));
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public override bool SetHP(float _hp, float _hpMax)
