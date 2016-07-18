@@ -22,6 +22,7 @@ public class PlayerBodyCollider : MonoBehaviour {
             {
                 enemyCtrl.attackEnable = false;
                 playerCtrl.dir = (playerCtrl.transform.position.x < enemyCtrl.transform.position.x) ? +1 : -1;
+                playerCtrl.ActionDamage(enemyCtrl.attackDamege);
             }
         }
     }

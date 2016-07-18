@@ -259,6 +259,7 @@ public class PlayerController : BaseCharacterController {
         }
 
         animator.SetTrigger("DMG_A");
+        rb2D.AddForce(new Vector2(-80.0f * (basScaleX * dir), 300.0f));
         speedVx = 0;
         rb2D.gravityScale = gravityScale;
 
