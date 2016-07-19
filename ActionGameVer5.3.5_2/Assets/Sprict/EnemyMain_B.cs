@@ -50,14 +50,14 @@ public class EnemyMain_B : EnemyMain {
                 }
                 if (!enemyCtrl.ActionMoveToNear(player, 2.0f))
                 {
-                    Attack_A();
+                    Attack_B();
                 }
                 break;
 
             case ENEMYAISTS.JUMPTOPLAYER: // ジャンプで近づく
                 if (GetDistanePlayer() < 2.5f && IsChangeDistanePlayer(0.5f))
                 {
-                    Attack_A();
+                    Attack_B();
                     break;
                 }
                 enemyCtrl.ActionJump();
@@ -75,7 +75,7 @@ public class EnemyMain_B : EnemyMain {
     }
 
     // アクション処理
-    void Attack_A()
+    void Attack_B()
     {
         enemyCtrl.ActionLookup(player, 0.1f);
         enemyCtrl.ActionMove(0.0f);
