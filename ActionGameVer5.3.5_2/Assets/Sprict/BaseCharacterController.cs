@@ -44,6 +44,9 @@ public class BaseCharacterController : MonoBehaviour {
     protected GameObject groundCheck_OnMoveObject;
     protected GameObject groundCheck_OnEnemyObject;
 
+    // 外部パラメータ
+    public GameObject[] fireObjectList;
+
     // 基本機能実装
     protected virtual void Awake()
     {
@@ -164,6 +167,16 @@ public class BaseCharacterController : MonoBehaviour {
         {
             speedVx = 0;
             animator.SetTrigger("Idle");
+        }
+    }
+
+    public void ActionFire()
+    {
+        Transform goFire = transform.Find("Muzzle");
+        foreach(GameObject fireObject in fireObjectList)
+        {
+            GameObject go = Instantiate(fireObject, goFire.position, Quaternion.identity) as GameObject;
+            go.GetComponent<FireBullet>().ownwer = transform;
         }
     }
 
