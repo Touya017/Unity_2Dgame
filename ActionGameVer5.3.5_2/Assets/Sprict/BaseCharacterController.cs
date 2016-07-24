@@ -177,7 +177,8 @@ public class BaseCharacterController : MonoBehaviour {
         foreach(GameObject fireObject in fireObjectList)
         {
             GameObject go = Instantiate(fireObject, goFire.position, Quaternion.identity) as GameObject;
-            go.transform.localScale = new Vector3(fireObject.transform.localScale.x * dir, fireObject.transform.localScale.y, fireObject.transform.localScale.z);
+            Debug.Log(goFire.position);
+            go.transform.localScale = new Vector3(fireObject.transform.localScale.x * dir, 1.0f, 1.0f);
             go.GetComponent<FireBullet>().ownwer = transform;
         }
     }
