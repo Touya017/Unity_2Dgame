@@ -102,7 +102,24 @@ public class EnemyController : BaseCharacterController {
 
         AnimatorStateInfo stateInfo = playerAnim.GetCurrentAnimatorStateInfo(0);
 
-        if(stateInfo.fullPathHash == PlayerController.ANISTS_Punch)
+        if(stateInfo.fullPathHash == PlayerController.ANISTS_QuickDraw)
+        {
+            damage = 3;
+            if (!superArmor)
+            {
+                animator.SetTrigger("DMG_A");
+                Erb2D.AddForce(new Vector2(-200.0f * (basScaleX * dir), 500.0f));
+                Debug.Log(string.Format(">>> DMG {0}", stateInfo.fullPathHash));
+            }
+            else
+            {
+                damage = 2;
+                animator.SetTrigger("DMG_A");
+                Debug.Log(string.Format(">>> DMG {0}", stateInfo.fullPathHash));
+            }
+        }
+
+        if (stateInfo.fullPathHash == PlayerController.ANISTS_Punch)
         {
             damage = 1;
             if (!superArmor)
@@ -118,7 +135,25 @@ public class EnemyController : BaseCharacterController {
                 Debug.Log(string.Format(">>> DMG {0}", stateInfo.fullPathHash));
             }
         }
-        if(SetHP(hp - damage, hpMax))
+
+        if (stateInfo.fullPathHash == PlayerController.ANISTS_Fire)
+        {
+            damage = 4;
+            if (!superArmor)
+            {
+                animator.SetTrigger("DMG_A");
+                Erb2D.AddForce(new Vector2(-200.0f * (basScaleX * dir), 500.0f));
+                Debug.Log(string.Format(">>> DMG {0}", stateInfo.fullPathHash));
+            }
+            else
+            {
+                damage = 2;
+                animator.SetTrigger("DMG_A");
+                Debug.Log(string.Format(">>> DMG {0}", stateInfo.fullPathHash));
+            }
+        }
+
+        if (SetHP(hp - damage, hpMax))
         {
             Dead(false);
             int addScoreV = ((int)((float)addScore * (playerCtrl.hp / playerCtrl.hpMax)));

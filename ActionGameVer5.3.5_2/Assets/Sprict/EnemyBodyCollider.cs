@@ -23,6 +23,10 @@ public class EnemyBodyCollider : MonoBehaviour {
                 attackHash = stateInfo.fullPathHash;
                 enemyCtrl.ActionDamage();
             }
+        }else if(other.tag == "PlayerArmBullet")
+        {
+            Destroy(other.gameObject);
+            enemyCtrl.ActionDamage();
         }
     }
 

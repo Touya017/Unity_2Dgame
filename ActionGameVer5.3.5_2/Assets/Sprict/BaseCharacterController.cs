@@ -170,12 +170,14 @@ public class BaseCharacterController : MonoBehaviour {
         }
     }
 
-    public void ActionFire()
+    // 射撃攻撃
+    public void DoFire()
     {
         Transform goFire = transform.Find("Muzzle");
         foreach(GameObject fireObject in fireObjectList)
         {
             GameObject go = Instantiate(fireObject, goFire.position, Quaternion.identity) as GameObject;
+            go.transform.localScale = new Vector3(fireObject.transform.localScale.x * dir, fireObject.transform.localScale.y, fireObject.transform.localScale.z);
             go.GetComponent<FireBullet>().ownwer = transform;
         }
     }
