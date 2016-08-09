@@ -31,7 +31,7 @@ public class EnemyMain_C : EnemyMain {
                 }
                 else if (n < aiIfRUNTOPLAYER + aiIfJUMPTOPLAYER + aiIfESCAPE)
                 {
-                    SetAIState(ENEMYAISTS.ESCAPE, Random.Range(2.0f, 7.0f));
+                    SetAIState(ENEMYAISTS.ESCAPE, Random.Range(5.0f, 8.0f));
                 }
                 else
                 {
@@ -45,10 +45,10 @@ public class EnemyMain_C : EnemyMain {
                 enemyCtrl.ActionMove(0.0f);
                 break;
 
-            case ENEMYAISTS.RUNTOPLAYER: // 近づく処理
-                if (GetDistanePlayerY() > 7.0f)
+            case ENEMYAISTS.RUNTOPLAYER: // 走って近づく処理
+                if (GetDistanePlayerY() > 10.0f)
                 {
-                    SetAIState(ENEMYAISTS.JUMPTOPLAYER, 1.5f);
+                    SetAIState(ENEMYAISTS.JUMPTOPLAYER, 5.0f);
                 }
                 if (!enemyCtrl.ActionMoveToFar (player, 5.0f))
                 {
@@ -57,18 +57,18 @@ public class EnemyMain_C : EnemyMain {
                 break;
 
             case ENEMYAISTS.JUMPTOPLAYER: // ジャンプで近づく
-                if (GetDistanePlayer() < 2.5f && IsChangeDistanePlayer(3.5f))
+                if (GetDistanePlayer() < 7.0f && IsChangeDistanePlayer(5.5f))
                 {
                     Attack_C();
                     break;
                 }
                 enemyCtrl.ActionJump();
-                enemyCtrl.ActionMoveToNear(player, 0.1f);
+                enemyCtrl.ActionMoveToNear(player, 3.5f);
                 SetAIState(ENEMYAISTS.FREEZ, 1.5f);
                 break;
 
             case ENEMYAISTS.ESCAPE: // 遠ざかる
-                if (!enemyCtrl.ActionMoveToFar(player, 4.0f))
+                if (!enemyCtrl.ActionMoveToFar(player, 5.0f))
                 {
                     SetAIState(ENEMYAISTS.ACTIONSELECT, 1.0f);
                 }
