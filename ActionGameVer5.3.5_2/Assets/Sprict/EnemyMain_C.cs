@@ -4,32 +4,42 @@ using System.Collections;
 public class EnemyMain_C : EnemyMain {
 
     // Inspector表示
-    public int aiIfRUNTOPLAYER = 20;
+    public int aiIfATTACKONSIGHT = 50;
+    public int aiIfRUNTOPLAYER = 10;
     public int aiIfJUMPTOPLAYER = 30;
     public int aiIfESCAPE = 10;
+    public int aiIfRETIRNTODOGPILE = 10;
+    public float aiPlayerEscapeDistance = 0.0f;
 
     public int damageAttack_A = 2;
     public int damageAttack_B = 2;
     public int damageAttack_C = 2;
 
+    public int fireAttack_A = 3;
+    public float waitAttack = 10.0f;
+
+
     // AI思考処理
     public override void FixedUpdateAI()
     {
+        // プレイヤーが来たら逃げる
+        enemyCtrl.ActionMoveToFar(player, aiPlayerEscapeDistance);
+
         // AIステート
         switch (aiState)
         {
             case ENEMYAISTS.ACTIONSELECT: //思考の起点
                 // アクションの選択
                 int n = SelectRandomAIState();
-                if (n < aiIfRUNTOPLAYER)
+                if (n < aiIfATTACKONSIGHT)
                 {
-                    SetAIState(ENEMYAISTS.RUNTOPLAYER, 7.0f);
+                    SetAIState(ENEMYAISTS.ATTACKONSIGHT, 100.0f);
                 }
-                else if (n < aiIfRUNTOPLAYER + aiIfJUMPTOPLAYER)
+                else if (n < aiIfATTACKONSIGHT + aiIfRUNTOPLAYER)
                 {
-                    SetAIState(ENEMYAISTS.JUMPTOPLAYER, 5.0f);
+                    SetAIState(ENEMYAISTS.RUNTOPLAYER, 5.0f);
                 }
-                else if (n < aiIfRUNTOPLAYER + aiIfJUMPTOPLAYER + aiIfESCAPE)
+                else if (n < aiIfATTACKONSIGHT + aiIfRUNTOPLAYER + aiIfESCAPE)
                 {
                     SetAIState(ENEMYAISTS.ESCAPE, Random.Range(5.0f, 8.0f));
                 }
@@ -45,12 +55,24 @@ public class EnemyMain_C : EnemyMain {
                 enemyCtrl.ActionMove(0.0f);
                 break;
 
+            case ENEMYAISTS.ATTACKONSIGHT: //その場で攻撃
+                if(enemyCtrl.transform.position.y < playerCtrl.transform.position.y)
+                {
+                    Attack_C();
+                }
+                else if(enemyCtrl.transform.position.y > playerCtrl.transform.position.y)
+                {
+                    Attack_B();
+                }
+                else   Attack_A();
+                break;
+
             case ENEMYAISTS.RUNTOPLAYER: // 走って近づく処理
                 if (GetDistanePlayerY() > 10.0f)
                 {
                     SetAIState(ENEMYAISTS.JUMPTOPLAYER, 5.0f);
                 }
-                if (!enemyCtrl.ActionMoveToFar (player, 5.0f))
+                if (!enemyCtrl.ActionMoveToNear(player, 10.0f))
                 {
                     Attack_A();
                 }

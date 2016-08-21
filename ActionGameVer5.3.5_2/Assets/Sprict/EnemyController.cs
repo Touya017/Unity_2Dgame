@@ -10,6 +10,7 @@ public class EnemyController : BaseCharacterController {
     public int addScore = 500;
 
     // 外部パラメータ
+    [System.NonSerialized]  public bool cameraRendered = false;
     [System.NonSerialized]  public bool attackEnable = false;
     [System.NonSerialized]  public int attackDamege = 1;
     [System.NonSerialized]  public Vector2 attackNockBackVector = Vector3.zero;
@@ -42,6 +43,12 @@ public class EnemyController : BaseCharacterController {
     // 敵個別の処理
     protected override void FixedUpdateCharacter()
     {
+        // カメラ範囲内かチェック
+        if (!cameraRendered)
+        {
+            return;
+        }
+
         // ジャンプチェック
         if (jumped)
         {

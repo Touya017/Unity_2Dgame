@@ -13,9 +13,15 @@ public enum ENEMYAISTS // 敵のAIステート
 } 
 public class EnemyMain : MonoBehaviour {
     // Inspector表示部分
+    public bool cameraSwitch = true;
+    public bool inActiveZoneSwitch = false;
+
     public int debug_SelectRandomAIState = -1;
+    Rigidbody2D Erb2D;
 
     // 外部パラメータ
+    [System.NonSerialized]  public bool cameraEnabled = false;
+    [System.NonSerialized]  public bool inActiveZone = false;
     [System.NonSerialized]  public ENEMYAISTS aiState = ENEMYAISTS.ACTIONSELECT;
 
     // キャッシュ
@@ -32,6 +38,7 @@ public class EnemyMain : MonoBehaviour {
     // 基本機能実装
     public virtual void Awake()
     {
+        Erb2D = GetComponent<Rigidbody2D>();
         enemyCtrl = GetComponent<EnemyController>();
         player = PlayerController.GetGameObject();
         playerCtrl = player.GetComponent<PlayerController>();
@@ -41,10 +48,37 @@ public class EnemyMain : MonoBehaviour {
 	public virtual void Start () {
 	
 	}
+
+    // ジャンプトリガー設定
+    void OnTriggerStay2D(Collider2D other)
+    {
+        // 状態チェック
+        if (enemyCtrl.grounded && CheckAction())
+        {
+            if (other.name == "EnemyJumpTrigger_L")
+            {
+                if (enemyCtrl.ActionJump())
+                {
+                    enemyCtrl.ActionMove(-1.0f);
+                }
+            }
+            else if (other.name == "EnemyJumpTrigger_R")
+            {
+                if (enemyCtrl.ActionJump())
+                {
+                    enemyCtrl.ActionMove(+1.0f);
+                }
+            }
+            else if (other.name == "EnemyJumpTrigger")
+            {
+                enemyCtrl.ActionJump();
+            }
+        }
+    }
 	
 	// Update is called once per frame
 	public virtual void Update () {
-	
+        cameraEnabled = false;
 	}
 
     public virtual void FixedUpdate()
@@ -70,7 +104,35 @@ public class EnemyMain : MonoBehaviour {
             return false;
         }
 
+        // アクティブゾーンに入っているか
+        if (inActiveZoneSwitch)
+        {
+            inActiveZone = false;
+            Vector3 vecA = player.transform.position + playerCtrl.enemyActiveZonePointA;
+            Vector3 vecB = player.transform.position + playerCtrl.enemyActiveZonePointB;
+            if(transform.position.x > vecA.x && transform.position.x < vecB.x &&
+                transform.position.y > vecA.y && transform.position.y < vecB.y)
+            {
+                inActiveZone = true;
+            }
+        }
+
+        // 空中は強制実行(空中設定敵)
+        if (enemyCtrl.grounded)
+        {
+            // カメラ内にいるか
+            if(cameraSwitch && !cameraEnabled && !inActiveZone)
+            {
+                // カメラに映っていない
+                enemyCtrl.ActionMove(0.0f);
+                enemyCtrl.cameraRendered = false;
+                enemyCtrl.animator.enabled = false;
+                Erb2D.Sleep();
+                return false;
+            }
+        }
         enemyCtrl.animator.enabled = true;
+        enemyCtrl.cameraRendered = true;
 
         // 状態チェック
         if (!CheckAction())

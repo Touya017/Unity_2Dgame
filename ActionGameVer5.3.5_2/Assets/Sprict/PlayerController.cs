@@ -34,6 +34,9 @@ public class PlayerController : BaseCharacterController {
     bool breakEnable = true;
     float groundFriction = 0.0f;
 
+    [System.NonSerialized]   public Vector3 enemyActiveZonePointA;
+    [System.NonSerialized]   public Vector3 enemyActiveZonePointB;
+
     // サポート関数(Enemy側からの参照用)
     // プレイヤーゲームオブジェクト
     public static GameObject GetGameObject()
@@ -65,6 +68,13 @@ public class PlayerController : BaseCharacterController {
         speed = initSpeed;
         SetHP(initHpMax, initHpMax);
 
+        // アクティブゾーンをBoxCollider2Dから取得
+        BoxCollider2D boxCol2D = transform.Find("Collider_EnemyActiveZone").GetComponent<BoxCollider2D>();
+        enemyActiveZonePointA = new Vector3(boxCol2D.offset.x - boxCol2D.size.x / 2.0f,
+            boxCol2D.offset.y - boxCol2D.size.y / 2.0f); 
+        enemyActiveZonePointB = new Vector3(boxCol2D.offset.x + boxCol2D.size.x / 2.0f,
+            boxCol2D.offset.y + boxCol2D.size.y / 2.0f);
+        boxCol2D.transform.gameObject.SetActive(false);
     }
 
     // キャラクター個別の処理

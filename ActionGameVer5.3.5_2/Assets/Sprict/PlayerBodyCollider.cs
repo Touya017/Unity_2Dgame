@@ -25,5 +25,16 @@ public class PlayerBodyCollider : MonoBehaviour {
                 playerCtrl.ActionDamage(enemyCtrl.attackDamege);
             }
         }
+        else if(other.tag == "EnemyArmBullet")
+        {
+            FireBullet fireBullet = other.transform.GetComponent<FireBullet>();
+            if (fireBullet.attackEnable)
+            {
+                fireBullet.attackEnable = false;
+                playerCtrl.dir = (playerCtrl.transform.position.x < fireBullet.transform.position.x) ? +1 : -1;
+                playerCtrl.ActionDamage(fireBullet.attackDamage);
+                Destroy(other.gameObject);
+            }
+        }
     }
 }
