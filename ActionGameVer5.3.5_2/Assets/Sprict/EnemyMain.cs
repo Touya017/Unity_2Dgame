@@ -8,6 +8,7 @@ public enum ENEMYAISTS // 敵のAIステート
     RUNTOPLAYER,        // 走ってプレイヤーに近づく
     JUMPTOPLAYER,       // ジャンプしてプレイヤーに近づく
     ESCAPE,             // プレイヤーから逃げる
+    RETURNTODOGPILE,    // ドックパイルに戻る
     ATTACKONSIGHT,      // その場から移動せずに攻撃する(遠距離攻撃)
     FREEZ,              // 行動停止(移動処理は行う)
 } 
@@ -15,7 +16,7 @@ public class EnemyMain : MonoBehaviour {
     // Inspector表示部分
     public bool cameraSwitch = true;
     public bool inActiveZoneSwitch = false;
-
+    public float dogPileReturnLength = 10.0f;
     public int debug_SelectRandomAIState = -1;
     Rigidbody2D Erb2D;
 
@@ -23,6 +24,7 @@ public class EnemyMain : MonoBehaviour {
     [System.NonSerialized]  public bool cameraEnabled = false;
     [System.NonSerialized]  public bool inActiveZone = false;
     [System.NonSerialized]  public ENEMYAISTS aiState = ENEMYAISTS.ACTIONSELECT;
+    [System.NonSerialized]  public GameObject dogPile;
 
     // キャッシュ
     protected EnemyController enemyCtrl;
@@ -46,7 +48,19 @@ public class EnemyMain : MonoBehaviour {
 
 	// Use this for initialization
 	public virtual void Start () {
-	
+        // dogPile設置
+        StageObject_DogPile[] dogPileList = GameObject.FindObjectsOfType<StageObject_DogPile>();
+        foreach(StageObject_DogPile findDogPile in dogPileList)
+        {
+            foreach(GameObject go in findDogPile.enemyList)
+            {
+                if(gameObject == go)
+                {
+                    dogPile = findDogPile.gameObject;
+                    break;
+                }
+            }
+        }
 	}
 
     // ジャンプトリガー設定
@@ -139,6 +153,15 @@ public class EnemyMain : MonoBehaviour {
         {
             return false;
         }
+
+        // ドッグパイル
+        if(dogPile != null)
+        {
+            if(GetDistaneDogPile() > dogPileReturnLength)
+            {
+                aiState = ENEMYAISTS.RETURNTODOGPILE;
+            }
+        }
         return true;
     }
 
@@ -224,5 +247,10 @@ public class EnemyMain : MonoBehaviour {
         posA.x = 0; posA.z = 0;
         posB.x = 0; posB.z = 0;
         return Vector3.Distance(posA, posB);
+    }
+
+    public float GetDistaneDogPile()
+    {
+        return Vector3.Distance(transform.position, dogPile.transform.position);
     }
 }
