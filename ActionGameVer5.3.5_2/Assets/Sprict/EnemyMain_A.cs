@@ -7,6 +7,7 @@ public class EnemyMain_A : EnemyMain {
     public int aiIfRUNTOPLAYER = 20;
     public int aiIfJUMPTOPLAYER = 30;
     public int aiIfESCAPE = 10;
+    public int aiIfRETURNTODOGPILE = 10;
 
     public int damageAttack_A = 1;
 
@@ -28,6 +29,12 @@ public class EnemyMain_A : EnemyMain {
                 }else if(n < aiIfRUNTOPLAYER + aiIfJUMPTOPLAYER + aiIfESCAPE)
                 {
                     SetAIState(ENEMYAISTS.ESCAPE, Random.Range(2.0f, 5.0f));
+                }else if(n < aiIfRUNTOPLAYER + aiIfJUMPTOPLAYER + aiIfESCAPE + aiIfRETURNTODOGPILE)
+                {
+                    if(dogPile != null)
+                    {
+                        SetAIState(ENEMYAISTS.RETURNTODOGPILE, 3.0f);
+                    }
                 }
                 else
                 {
@@ -65,6 +72,19 @@ public class EnemyMain_A : EnemyMain {
 
             case ENEMYAISTS.ESCAPE: // 遠ざかる
                 if(!enemyCtrl.ActionMoveToFar(player, 7.0f))
+                {
+                    SetAIState(ENEMYAISTS.ACTIONSELECT, 1.0f);
+                }
+                break;
+
+            case ENEMYAISTS.RETURNTODOGPILE: // ドッグパイルに戻る
+                if (enemyCtrl.ActionMoveToNear(dogPile, 2.0f))
+                {
+                    if(GetDistanePlayer() < 2.0f)
+                    {
+                        Attack_A();
+                    }
+                }else
                 {
                     SetAIState(ENEMYAISTS.ACTIONSELECT, 1.0f);
                 }

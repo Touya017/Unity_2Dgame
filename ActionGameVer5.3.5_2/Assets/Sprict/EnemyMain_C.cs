@@ -43,6 +43,13 @@ public class EnemyMain_C : EnemyMain {
                 {
                     SetAIState(ENEMYAISTS.ESCAPE, Random.Range(5.0f, 8.0f));
                 }
+                else if(n < aiIfATTACKONSIGHT + aiIfRUNTOPLAYER + aiIfESCAPE + aiIfRETIRNTODOGPILE)
+                {
+                    if(dogPile != null)
+                    {
+                        SetAIState(ENEMYAISTS.RETURNTODOGPILE, 3.0f);
+                    }
+                }
                 else
                 {
                     SetAIState(ENEMYAISTS.WAIT, 1.0f + Random.Range(0.0f, 1.0f));
@@ -91,6 +98,19 @@ public class EnemyMain_C : EnemyMain {
 
             case ENEMYAISTS.ESCAPE: // 遠ざかる
                 if (!enemyCtrl.ActionMoveToFar(player, 5.0f))
+                {
+                    SetAIState(ENEMYAISTS.ACTIONSELECT, 1.0f);
+                }
+                break;
+
+            case ENEMYAISTS.RETURNTODOGPILE: // ドッグパイルに戻る
+                if (enemyCtrl.ActionMoveToNear(dogPile, 2.0f))
+                {
+                    if(GetDistanePlayer() < 2.0f)
+                    {
+                        Attack_A();
+                    }
+                }else
                 {
                     SetAIState(ENEMYAISTS.ACTIONSELECT, 1.0f);
                 }
