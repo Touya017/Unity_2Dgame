@@ -11,7 +11,7 @@ public class StageObject_DogPile : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         InvokeRepeating("CheckEnemy", 0.0f, 1.0f);
-	}
+    }
 	
     void CheckEnemy()
     {
@@ -30,7 +30,8 @@ public class StageObject_DogPile : MonoBehaviour {
             // 登録されている破壊物リストのオブジェクトを削除
             foreach(GameObject destroyObject in destroyObjectList)
             {
-                Destroy(destroyObject, 1.0f);
+                GameObject Dobject = Instantiate(destroyObject) as GameObject;
+                Destroy(Dobject, 1.0f);
             }
             CancelInvoke("CheckEnemy");
         }
