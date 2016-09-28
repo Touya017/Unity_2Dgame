@@ -16,6 +16,7 @@ public class EnemyMain : MonoBehaviour {
     // Inspector表示部分
     public bool cameraSwitch = true;
     public bool inActiveZoneSwitch = false;
+    public bool combatAIOerder = true;
     public float dogPileReturnLength = 10.0f;
     public int debug_SelectRandomAIState = -1;
     Rigidbody2D Erb2D;
