@@ -97,4 +97,20 @@ public class EnemyMain_B : EnemyMain {
         enemyCtrl.ActionAttack("Attack_B", damageAttack_B);
         SetAIState(ENEMYAISTS.WAIT, 3.0f);
     }
+
+    // COMBAT AI対応処理
+    public override void SetCombatAIState(ENEMYAISTS sts)
+    {
+        base.SetCombatAIState(sts);
+        switch(aiState){
+            case ENEMYAISTS.ACTIONSELECT : break;
+            case ENEMYAISTS.WAIT : 
+                 aiActionTimeLength = 1.0f * Random.Range(0.0f, 1.0f); break;
+            case ENEMYAISTS.RUNTOPLAYER : aiActionTimeLength = 3.0f; break;
+            case ENEMYAISTS.JUMPTOPLAYER : aiActionTimeLength = 1.0f; break;
+            case ENEMYAISTS.ESCAPE : 
+                 aiActionTimeLength = Random.Range(2.0f, 5.0f); break;
+            case ENEMYAISTS.RETURNTODOGPILE : aiActionTimeLength = 3.0f; break;
+        }
+    }
 }
