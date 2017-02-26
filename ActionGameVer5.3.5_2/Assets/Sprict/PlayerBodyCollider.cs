@@ -18,7 +18,7 @@ public class PlayerBodyCollider : MonoBehaviour {
         {
             EnemyController enemyCtrl = other.GetComponentInParent<EnemyController>();
 
-            if (enemyCtrl.attackEnable)
+            if (enemyCtrl.attackEnable)                     // 敵の攻撃が命中したら
             {
                 enemyCtrl.attackEnable = false;
                 playerCtrl.dir = (playerCtrl.transform.position.x < enemyCtrl.transform.position.x) ? +1 : -1;

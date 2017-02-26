@@ -5,8 +5,8 @@ using System.Collections.Generic;
 public class CombatAI : MonoBehaviour
 {
     // 外部パラメータ(Inspector表示)
-    public int freeAIMax = 3;
-    public int blockAttackAIMax = 10;
+    public int freeAIMax = 3;                           // 自由に攻撃させたい敵の数 
+    public int blockAttackAIMax = 10;                   // 一度に管理する敵の数
 
     // コード記入
     void FixeUpdate()
@@ -24,7 +24,7 @@ public class CombatAI : MonoBehaviour
             EnemyMain enemyMain = enemy.GetComponent<EnemyMain>();
             if (enemyMain != null)
             {
-                if (enemyMain.combatAIOerder && enemyMain.cameraEnabled)
+                if (enemyMain.combatAIOerder && enemyMain.cameraEnabled)       // 画面外の敵がカメラ範囲内に入った場合
                 {
                     activeEnemyMainList.Add(enemyMain);
                 }
@@ -38,13 +38,13 @@ public class CombatAI : MonoBehaviour
 
         // 攻撃する敵を抑制
         int i = 0;
-        foreach (EnemyMain enemyMain in activeEnemyMainList)
+        foreach (EnemyMain enemyMain in activeEnemyMainList)                   // 敵の数を行動できる敵のリストとして格納
         {
             if (i < freeAIMax)
             {
                 // そのまま自由に行動させる
             }
-            else if (i < freeAIMax + blockAttackAIMax)
+            else if (i < freeAIMax + blockAttackAIMax)                         // i=敵の番号　i番目の敵が13番目よりも手前のとき
             {
                 // 攻撃を抑制する
                 if (enemyMain.aiState == ENEMYAISTS.RUNTOPLAYER)
@@ -53,7 +53,7 @@ public class CombatAI : MonoBehaviour
                 }
             }
             else
-            {
+            {                                                                  // 14番目以降の敵の場合
                 // 攻撃を停止する
                 if (enemyMain.aiState != ENEMYAISTS.WAIT)
                 {

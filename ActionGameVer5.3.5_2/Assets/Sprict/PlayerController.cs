@@ -4,15 +4,17 @@ using System.Collections;
 
 public class PlayerController : BaseCharacterController {
 
-    // アニメーションのハッシュ名
-    public readonly static int ANISTS_Idle = Animator.StringToHash("Base Layer.Toko_Idle");
-    public readonly static int ANISTS_Walk = Animator.StringToHash("Base Layer.Toko_Walk");
-    public readonly static int ANISTS_Run = Animator.StringToHash("Base Layer.Toko_Run");
-    public readonly static int ANISTS_Jump = Animator.StringToHash("Base Layer.Toko_Jump");
-    public readonly static int ANISTS_Punch = Animator.StringToHash("Base Layer.Toko_Punch");
-    public readonly static int ANISTS_QuickDraw = Animator.StringToHash("Base Layer.Toko_QuickDraw");
-    public readonly static int ANISTS_Fire = Animator.StringToHash("Base Layer.Toko_Fire");
-    public readonly static int ANISTS_Dead = Animator.StringToHash("Base Layer.Toko_Dead");
+    //-------------------------------------------------//
+    // アニメーションのハッシュ名                        //
+    //-------------------------------------------------//
+    public readonly static int ANISTS_Idle = Animator.StringToHash("Base Layer.Toko_Idle");             // アイドル状態
+    public readonly static int ANISTS_Walk = Animator.StringToHash("Base Layer.Toko_Walk");             // 歩き
+    public readonly static int ANISTS_Run = Animator.StringToHash("Base Layer.Toko_Run");               // 走り
+    public readonly static int ANISTS_Jump = Animator.StringToHash("Base Layer.Toko_Jump");             // ジャンプ
+    public readonly static int ANISTS_Punch = Animator.StringToHash("Base Layer.Toko_Punch");           // 掌底
+    public readonly static int ANISTS_QuickDraw = Animator.StringToHash("Base Layer.Toko_QuickDraw");   // クイックドロー
+    public readonly static int ANISTS_Fire = Animator.StringToHash("Base Layer.Toko_Fire");             // 射撃
+    public readonly static int ANISTS_Dead = Animator.StringToHash("Base Layer.Toko_Dead");             // 死亡
 
     // セーブデータパラメータ
     public static float nowHpMax = 0;
@@ -34,6 +36,11 @@ public class PlayerController : BaseCharacterController {
     bool breakEnable = true;
     float groundFriction = 0.0f;
 
+    //------------------------------------------------//
+    // 敵の行動有効範囲の領域設定                       //
+    // ・カメラの範囲に付随                            //
+    // ・この範囲に敵が入ると動作フラグが有効になる      //
+    //------------------------------------------------//
     [System.NonSerialized]   public Vector3 enemyActiveZonePointA;
     [System.NonSerialized]   public Vector3 enemyActiveZonePointB;
 
@@ -204,7 +211,7 @@ public class PlayerController : BaseCharacterController {
                 if (!grounded)
                 {
                     animator.Play("Toko_Jump", 0, 0.0f);
-                    rb2D.velocity = new Vector2(rb2D.velocity.x, 10.0f);
+                    rb2D.velocity = new Vector2(rb2D.velocity.x, 15.0f);
                     jumped = true;
                     jumpCount++;
 
