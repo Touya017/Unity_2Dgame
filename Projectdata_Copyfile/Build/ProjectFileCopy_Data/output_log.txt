@@ -1,46 +1,40 @@
-Mono path[0] = 'C:/Users/翼/Documents/Unity_2Dgame/Projectdata_Copyfile/Build/ProjectFileCopy_Data/Managed'
-Mono path[1] = 'C:/Users/翼/Documents/Unity_2Dgame/Projectdata_Copyfile/Build/ProjectFileCopy_Data/Mono'
-Mono config path = 'C:/Users/翼/Documents/Unity_2Dgame/Projectdata_Copyfile/Build/ProjectFileCopy_Data/Mono/etc'
-PlayerConnection initialized from C:/Users/翼/Documents/Unity_2Dgame/Projectdata_Copyfile/Build/ProjectFileCopy_Data (debug = 0)
-PlayerConnection initialized network socket : 0.0.0.0 55027
-Multi-casting "[IP] 192.168.0.10 [Port] 55027 [Flags] 3 [Guid] 4052487913 [EditorId] 4112537869 [Version] 1048832 [Id] WindowsPlayer(PSO2_FF14) [Debug] 1" to [225.0.0.222:54997]...
-Waiting for connection from host on [0.0.0.0:55027]...
-PlayerConnection accepted from [192.168.0.10] handle:0x310
-Started listening to [0.0.0.0:55027]
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,defer=y,address=0.0.0.0:56913
-PlayerConnection already initialized - listening to [0.0.0.0:55027]
+Mono path[0] = 'C:/Users/tester/Documents/Unity_2Dgame/Projectdata_Copyfile/Build/ProjectFileCopy_Data/Managed'
+Mono path[1] = 'C:/Users/tester/Documents/Unity_2Dgame/Projectdata_Copyfile/Build/ProjectFileCopy_Data/Mono'
+Mono config path = 'C:/Users/tester/Documents/Unity_2Dgame/Projectdata_Copyfile/Build/ProjectFileCopy_Data/Mono/etc'
+PlayerConnection initialized from C:/Users/tester/Documents/Unity_2Dgame/Projectdata_Copyfile/Build/ProjectFileCopy_Data (debug = 0)
+PlayerConnection initialized network socket : 0.0.0.0 55287
+Multi-casting "[IP] 10.1.9.2 [Port] 55287 [Flags] 2 [Guid] 3679845059 [EditorId] 3784160742 [Version] 1048832 [Id] WindowsPlayer(DESKTOP-L38OAQ5) [Debug] 0" to [225.0.0.222:54997]...
+Started listening to [0.0.0.0:55287]
+PlayerConnection already initialized - listening to [0.0.0.0:55287]
 Initialize engine version: 5.5.2f1 (3829d7f588f3)
 GfxDevice: creating device client; threaded=1
 Direct3D:
-    Version:  Direct3D 11.0 [level 11.0]
-    Renderer: NVIDIA GeForce GTX 780 (ID=0x1004)
-    Vendor:   NVIDIA
-    VRAM:     3039 MB
-    Driver:   21.21.13.7878
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: Intel(R) HD Graphics 4600 (ID=0x416)
+    Vendor:   Intel
+    VRAM:     1136 MB
+    Driver:   10.18.15.4268
 Begin MonoManager ReloadAssembly
-Platform assembly: C:\Users\翼\Documents\Unity_2Dgame\Projectdata_Copyfile\Build\ProjectFileCopy_Data\Managed\UnityEngine.dll (this message is harmless)
-Loading C:\Users\翼\Documents\Unity_2Dgame\Projectdata_Copyfile\Build\ProjectFileCopy_Data\Managed\UnityEngine.dll into Unity Child Domain
-Platform assembly: C:\Users\翼\Documents\Unity_2Dgame\Projectdata_Copyfile\Build\ProjectFileCopy_Data\Managed\Assembly-CSharp.dll (this message is harmless)
-Loading C:\Users\翼\Documents\Unity_2Dgame\Projectdata_Copyfile\Build\ProjectFileCopy_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-Platform assembly: C:\Users\翼\Documents\Unity_2Dgame\Projectdata_Copyfile\Build\ProjectFileCopy_Data\Managed\UnityEngine.UI.dll (this message is harmless)
-Loading C:\Users\翼\Documents\Unity_2Dgame\Projectdata_Copyfile\Build\ProjectFileCopy_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-Platform assembly: C:\Users\翼\Documents\Unity_2Dgame\Projectdata_Copyfile\Build\ProjectFileCopy_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
-Loading C:\Users\翼\Documents\Unity_2Dgame\Projectdata_Copyfile\Build\ProjectFileCopy_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-Platform assembly: C:\Users\翼\Documents\Unity_2Dgame\Projectdata_Copyfile\Build\ProjectFileCopy_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
-Loading C:\Users\翼\Documents\Unity_2Dgame\Projectdata_Copyfile\Build\ProjectFileCopy_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
-Platform assembly: C:\Users\翼\Documents\Unity_2Dgame\Projectdata_Copyfile\Build\ProjectFileCopy_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
-Loading C:\Users\翼\Documents\Unity_2Dgame\Projectdata_Copyfile\Build\ProjectFileCopy_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
-Platform assembly: C:\Users\翼\Documents\Unity_2Dgame\Projectdata_Copyfile\Build\ProjectFileCopy_Data\Managed\TextMeshPro.dll (this message is harmless)
-Loading C:\Users\翼\Documents\Unity_2Dgame\Projectdata_Copyfile\Build\ProjectFileCopy_Data\Managed\TextMeshPro.dll into Unity Child Domain
-- Completed reload, in  0.025 seconds
-Platform assembly: C:\Users\翼\Documents\Unity_2Dgame\Projectdata_Copyfile\Build\ProjectFileCopy_Data\Managed\System.Core.dll (this message is harmless)
-Platform assembly: C:\Users\翼\Documents\Unity_2Dgame\Projectdata_Copyfile\Build\ProjectFileCopy_Data\Managed\System.dll (this message is harmless)
-desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+Platform assembly: C:\Users\tester\Documents\Unity_2Dgame\Projectdata_Copyfile\Build\ProjectFileCopy_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\tester\Documents\Unity_2Dgame\Projectdata_Copyfile\Build\ProjectFileCopy_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\tester\Documents\Unity_2Dgame\Projectdata_Copyfile\Build\ProjectFileCopy_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\tester\Documents\Unity_2Dgame\Projectdata_Copyfile\Build\ProjectFileCopy_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\tester\Documents\Unity_2Dgame\Projectdata_Copyfile\Build\ProjectFileCopy_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\tester\Documents\Unity_2Dgame\Projectdata_Copyfile\Build\ProjectFileCopy_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\tester\Documents\Unity_2Dgame\Projectdata_Copyfile\Build\ProjectFileCopy_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\tester\Documents\Unity_2Dgame\Projectdata_Copyfile\Build\ProjectFileCopy_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\tester\Documents\Unity_2Dgame\Projectdata_Copyfile\Build\ProjectFileCopy_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
+Loading C:\Users\tester\Documents\Unity_2Dgame\Projectdata_Copyfile\Build\ProjectFileCopy_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
+Platform assembly: C:\Users\tester\Documents\Unity_2Dgame\Projectdata_Copyfile\Build\ProjectFileCopy_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading C:\Users\tester\Documents\Unity_2Dgame\Projectdata_Copyfile\Build\ProjectFileCopy_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+- Completed reload, in  0.029 seconds
+Platform assembly: C:\Users\tester\Documents\Unity_2Dgame\Projectdata_Copyfile\Build\ProjectFileCopy_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\tester\Documents\Unity_2Dgame\Projectdata_Copyfile\Build\ProjectFileCopy_Data\Managed\System.dll (this message is harmless)
 <RI> Initializing input.
+XInput1_3.dll not found. Trying XInput9_1_0.dll instead...
 <RI> Input initialized.
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
 <RI> Initialized touch support.
-UnloadTime: 1.032429 ms
-Setting up 2 worker threads for Enlighten.
-  Thread -> id: 29dc -> priority: 1 
-  Thread -> id: 273c -> priority: 1 
-Waiting for finish
+UnloadTime: 1.248471 ms
+Setting up 1 worker threads for Enlighten.
+  Thread -> id: 2748 -> priority: 1 
