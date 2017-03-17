@@ -1,11 +1,29 @@
+<<<<<<< HEAD
+=======
+Mono path[0] = 'C:/Users/tester/Documents/Unity_2Dgame/Projectdata_Copyfile/Build/ProjectFileCopy_Data/Managed'
+Mono path[1] = 'C:/Users/tester/Documents/Unity_2Dgame/Projectdata_Copyfile/Build/ProjectFileCopy_Data/Mono'
+Mono config path = 'C:/Users/tester/Documents/Unity_2Dgame/Projectdata_Copyfile/Build/ProjectFileCopy_Data/Mono/etc'
+PlayerConnection initialized from C:/Users/tester/Documents/Unity_2Dgame/Projectdata_Copyfile/Build/ProjectFileCopy_Data (debug = 0)
+PlayerConnection initialized network socket : 0.0.0.0 55287
+Multi-casting "[IP] 10.1.9.2 [Port] 55287 [Flags] 2 [Guid] 3679845059 [EditorId] 3784160742 [Version] 1048832 [Id] WindowsPlayer(DESKTOP-L38OAQ5) [Debug] 0" to [225.0.0.222:54997]...
+Started listening to [0.0.0.0:55287]
+PlayerConnection already initialized - listening to [0.0.0.0:55287]
+>>>>>>> 21043ea0256c16950d76028bfb05108efd091014
 Initialize engine version: 5.5.2f1 (3829d7f588f3)
 GfxDevice: creating device client; threaded=1
 Direct3D:
     Version:  Direct3D 11.0 [level 11.1]
+<<<<<<< HEAD
     Renderer: NVIDIA GeForce GTX 1060 3GB (ID=0x1c02)
     Vendor:   NVIDIA
     VRAM:     3035 MB
     Driver:   21.21.13.7357
+=======
+    Renderer: Intel(R) HD Graphics 4600 (ID=0x416)
+    Vendor:   Intel
+    VRAM:     1136 MB
+    Driver:   10.18.15.4268
+>>>>>>> 21043ea0256c16950d76028bfb05108efd091014
 Begin MonoManager ReloadAssembly
 Platform assembly: C:\Users\tester\Documents\Unity_2Dgame\Projectdata_Copyfile\Build\ProjectFileCopy_Data\Managed\UnityEngine.dll (this message is harmless)
 Loading C:\Users\tester\Documents\Unity_2Dgame\Projectdata_Copyfile\Build\ProjectFileCopy_Data\Managed\UnityEngine.dll into Unity Child Domain
@@ -19,15 +37,28 @@ Platform assembly: C:\Users\tester\Documents\Unity_2Dgame\Projectdata_Copyfile\B
 Loading C:\Users\tester\Documents\Unity_2Dgame\Projectdata_Copyfile\Build\ProjectFileCopy_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
 Platform assembly: C:\Users\tester\Documents\Unity_2Dgame\Projectdata_Copyfile\Build\ProjectFileCopy_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
 Loading C:\Users\tester\Documents\Unity_2Dgame\Projectdata_Copyfile\Build\ProjectFileCopy_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+<<<<<<< HEAD
 - Completed reload, in  0.091 seconds
 Platform assembly: C:\Users\tester\Documents\Unity_2Dgame\Projectdata_Copyfile\Build\ProjectFileCopy_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\tester\Documents\Unity_2Dgame\Projectdata_Copyfile\Build\ProjectFileCopy_Data\Managed\System.dll (this message is harmless)
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+=======
+- Completed reload, in  0.029 seconds
+Platform assembly: C:\Users\tester\Documents\Unity_2Dgame\Projectdata_Copyfile\Build\ProjectFileCopy_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\tester\Documents\Unity_2Dgame\Projectdata_Copyfile\Build\ProjectFileCopy_Data\Managed\System.dll (this message is harmless)
+>>>>>>> 21043ea0256c16950d76028bfb05108efd091014
 <RI> Initializing input.
 XInput1_3.dll not found. Trying XInput9_1_0.dll instead...
 <RI> Input initialized.
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
 <RI> Initialized touch support.
+<<<<<<< HEAD
 UnloadTime: 0.601420 ms
 Setting up 2 worker threads for Enlighten.
   Thread -> id: 154c -> priority: 1 
   Thread -> id: 17f0 -> priority: 1 
+=======
+UnloadTime: 1.248471 ms
+Setting up 1 worker threads for Enlighten.
+  Thread -> id: 2748 -> priority: 1 
+>>>>>>> 21043ea0256c16950d76028bfb05108efd091014
