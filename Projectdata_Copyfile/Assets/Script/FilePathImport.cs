@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class FilePathImport : MonoBehaviour {
 
-    static void Main(string[] args)
+    public static void Main(string[] args)
     {
         string filePath = @"C:\Users\tester\Desktop\ProjectSettings\ProjectSettings.txt";
         Encoding fileEnc = Encoding.GetEncoding("shift_jis");
@@ -19,6 +19,8 @@ public class FilePathImport : MonoBehaviour {
         string[] projecFilepathlines = File.ReadAllLines(filePath, fileEnc);
 
         // 文字列表示
+
+        Debug.Log(projectFilepath);
         foreach(string i in projecFilepathlines)
         {
             Debug.Log("{i}\n");
