@@ -169,6 +169,7 @@ public class EnemyController : BaseCharacterController {
         if (SetHP(hp - damage, hpMax))
         {
             Dead(false);
+            animator.SetTrigger("Dead");
             int addScoreV = ((int)((float)addScore * (playerCtrl.hp / playerCtrl.hpMax)));
             PlayerController.score += addScoreV;
         }
@@ -178,6 +179,6 @@ public class EnemyController : BaseCharacterController {
     public override void Dead(bool gameover)
     {
         base.Dead(gameover);
-        Destroy(gameObject, 1.0f);
+        Destroy(gameObject, 1.5f);
     }
 }

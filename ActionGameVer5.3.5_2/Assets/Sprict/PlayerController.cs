@@ -302,7 +302,7 @@ public class PlayerController : BaseCharacterController {
         }
         base.Dead(gameover);
         SetHP(0, hpMax);
-        Invoke("GameOver", 3.0f);
+        Invoke("GameOver", 10.0f);
     }
 
     // GameOver処理
