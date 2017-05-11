@@ -1,0 +1,35 @@
+﻿using System.Collections;
+using UnityEngine;
+
+public class EnemyController : MonoBehaviour {
+
+    // 共用Spaceshipコンポーネント宣言
+    Spaceship spaceship;
+
+	// Use this for initialization
+	IEnumerator Start () {
+        // Spaceshipコンポーネント取得
+        spaceship = GetComponent<Spaceship>();
+
+        // 画面下に向かう処理
+        spaceship.Move(transform.up * -1);
+
+        if(spaceship.CanShot == false)              // 弾を撃つ設定がOFFの場合処理を終了する
+        {
+            yield break;
+        }
+
+        while (true)                                // 弾を撃ち続ける
+        {
+            // shotPositionの座標と収納
+            for(int i=0; i < transform.childCount; i++)
+            {
+                Transform shotPosition = transform.GetChild(i);
+
+                // ShotPositionの位置/角度で弾を発射
+                spaceship.Shot(shotPosition);
+            }
+            yield return new WaitForSeconds(spaceship.shotDelay);
+        }
+    }
+}
