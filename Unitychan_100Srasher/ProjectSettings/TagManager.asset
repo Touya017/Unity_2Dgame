@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - PlayerBody
+  - PlayerArm
+  - PlayerArmBullet
+  - Enemy
+  - EnemyBody
+  - EnemyArm
+  - EnemyArmBullet
+  - Road
+  - Item
+  - Object
+  - DestroyObject
+  - MoveObject
+  - DamageObject
+  - CameraTrigger
+  - EventTrigger
+  - KeyDoor
+  - DestroySeitch
+  - Shadow
+  - SubCamera
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - StageBack
+  - Road
+  - Object
+  - Char
+  - GroundCheck
+  - Item
+  - CameraTrigger
+  - PhysicsETC
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Back
+    uniqueID: 1251113859
+    locked: 0
+  - name: Road
+    uniqueID: 2582827057
+    locked: 0
+  - name: ObjectBack
+    uniqueID: 4117031413
+    locked: 0
+  - name: Object
+    uniqueID: 1649905993
+    locked: 0
+  - name: Item
+    uniqueID: 2255981799
+    locked: 0
+  - name: Char
+    uniqueID: 439232619
+    locked: 0
+  - name: CharFront
+    uniqueID: 3181228495
+    locked: 0
+  - name: ObjectFront
+    uniqueID: 1081951779
+    locked: 0
+  - name: Front
+    uniqueID: 3909729031
+    locked: 0
+  - name: GUI
+    uniqueID: 3414041381
+    locked: 0
+  - name: CameraFilter
+    uniqueID: 280644905
+    locked: 0
